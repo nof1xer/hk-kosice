@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HK Košice — Hádzaná</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#D4A017;
+  --gold-light:#F0C040;
+  --dark:#0A0A0A;
+  --bg:#111111;
+  --bg2:#181818;
+  --bg3:#222222;
+  --text:#F0EDE8;
+  --text2:#9A9690;
+  --border:#2E2B27;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;border-bottom:2px solid var(--gold);background:rgba(10,10,10,0.95);backdrop-filter:blur(8px);}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-shield{width:42px;height:50px;}
+.logo-text .club{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold);}
+.logo-text .city{font-size:10px;letter-spacing:4px;color:var(--text2);text-transform:uppercase;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:#000;padding:9px 24px;border-radius:3px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;cursor:pointer;border:none;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--gold-light);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-burger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+@media(max-width:768px){
+  .nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:2px solid var(--gold);padding:1rem 1.5rem;gap:16px;}
+  .nav-links.open{display:flex;}
+  .nav-burger{display:flex;}
+}
+
+/* HERO */
+.hero{position:relative;min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:4rem 2rem;}
+.hero-canvas{position:absolute;inset:0;}
+.hero-content{position:relative;z-index:2;}
+.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:6px 20px;border-radius:2px;margin-bottom:2rem;animation:fadeUp .8s ease both;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,14vw,140px);letter-spacing:4px;line-height:0.88;margin-bottom:1rem;animation:fadeUp .8s .15s ease both;}
+.hero h1 .gold{color:var(--gold);}
+.hero-sub{font-size:14px;letter-spacing:5px;text-transform:uppercase;color:var(--text2);margin-bottom:3rem;animation:fadeUp .8s .3s ease both;}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .45s ease both;}
+.btn-gold{background:var(--gold);color:#000;padding:15px 40px;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:16px;border:none;cursor:pointer;border-radius:3px;text-decoration:none;transition:background .2s,transform .1s;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--text);padding:15px 40px;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:16px;border:1.5px solid var(--border);cursor:pointer;border-radius:3px;text-decoration:none;transition:border-color .2s,transform .1s;}
+.btn-outline:hover{border-color:var(--gold);transform:translateY(-2px);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+
+/* STATS */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--gold);border-bottom:1px solid var(--border);background:var(--bg2);}
+.stat{padding:1.5rem 1rem;text-align:center;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--gold);letter-spacing:2px;}
+.stat-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-top:4px;}
+@media(max-width:600px){.stats-strip{grid-template-columns:repeat(2,1fr);}.stat:nth-child(2){border-right:none;}.stat:nth-child(3){border-right:1px solid var(--border);}}
+
+/* SECTIONS */
+.section{padding:4rem 3rem;}
+@media(max-width:768px){.section{padding:3rem 1.5rem;}}
+.sec-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;margin-bottom:1.75rem;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+
+/* MATCHES */
+.matches{display:flex;flex-direction:column;gap:10px;}
+.match-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:6px;background:var(--bg3);transition:border-color .2s;}
+.match-card:hover{border-color:var(--gold);}
+.match-card.next{border-color:var(--gold);background:rgba(212,160,23,0.05);}
+.match-date{font-size:12px;color:var(--text2);letter-spacing:1px;min-width:72px;}
+.match-teams{font-weight:500;font-size:14px;flex:1;text-align:center;}
+.match-right{display:flex;align-items:center;gap:10px;min-width:80px;justify-content:flex-end;}
+.match-score{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold);}
+.badge{font-size:10px;padding:3px 9px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;}
+.badge-win{background:#1a3320;color:#4ade80;}
+.badge-loss{background:#2d1515;color:#f87171;}
+.badge-next{background:#1a1500;color:var(--gold);}
+
+/* PLAYERS */
+.players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.player-card{border:1px solid var(--border);border-radius:8px;background:var(--bg3);text-align:center;padding:1.25rem 0.75rem;transition:border-color .2s,transform .2s;cursor:default;}
+.player-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.player-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);line-height:1;}
+.player-pos{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin:4px 0 6px;}
+.player-name{font-weight:500;font-size:13px;}
+
+/* NEWS */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.news-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg3);transition:border-color .2s,transform .2s;}
+.news-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.news-img{height:100px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;line-height:1;}
+.news-body{padding:1rem;}
+.news-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.news-title{font-size:13px;font-weight:500;line-height:1.5;color:var(--text);}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;}
+table.standings{width:100%;border-collapse:collapse;font-size:13px;}
+table.standings th{text-align:left;padding:8px 12px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border);}
+table.standings td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05);}
+table.standings tr.highlight td{color:var(--gold);font-weight:500;}
+table.standings tr:hover td{background:rgba(212,160,23,0.04);}
+
+/* MAP SECTION */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info{display:flex;flex-direction:column;gap:16px;}
+.contact-row{display:flex;gap:12px;align-items:flex-start;}
+.contact-icon{width:36px;height:36px;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.contact-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:3px;}
+.contact-value{font-size:14px;font-weight:500;}
+.map-placeholder{background:var(--bg3);border:1px solid var(--border);border-radius:8px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text2);font-size:13px;}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0 3rem;}
+@media(max-width:768px){.divider{margin:0 1.5rem;}}
+
+/* FOOTER */
+.footer{border-top:2px solid var(--gold);padding:2rem 3rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;background:var(--bg2);}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold);}
+.footer-copy{font-size:12px;color:var(--text2);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:12px;letter-spacing:1px;color:var(--text2);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.social-row{display:flex;gap:10px;}
+.soc{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;}
+.soc:hover{border-color:var(--gold);}
+.soc svg{width:16px;height:16px;fill:var(--text2);}
+@media(max-width:768px){.footer{padding:1.5rem;flex-direction:column;align-items:flex-start;}.divider{margin:0 1rem;}}
+
+/* SECTION BG ALT */
+.bg-alt{background:var(--bg2);}
+
+/* SCROLL ANIM */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="logo-wrap" href="#">
+    <svg class="logo-shield" viewBox="0 0 44 52" fill="none">
+      <path d="M22 1L1 10V28C1 40 12 49 22 51C32 49 43 40 43 28V10L22 1Z" fill="#D4A017"/>
+      <path d="M22 6L5 14V28C5 38 13.5 46 22 48C30.5 46 39 38 39 28V14L22 6Z" fill="#0A0A0A"/>
+      <text x="22" y="34" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="18" fill="#D4A017" letter-spacing="1">HK</text>
+    </svg>
+    <div class="logo-text">
+      <div class="club">HK Košice</div>
+      <div class="city">Hádzaná klub</div>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#zapasy">Zápasy</a></li>
+    <li><a href="#hráči">Hráči</a></li>
+    <li><a href="#tabuľka">Tabuľka</a></li>
+    <li><a href="#novinky">Novinky</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="nav-cta" href="#zapasy">Kúpiť lístky</a>
+  <div class="nav-burger" id="burger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">Sezóna 2025 / 2026</div>
+    <h1>Hádzaná<br><span class="gold">Košice</span></h1>
+    <p class="hero-sub">Vášeň &nbsp;·&nbsp; Tím &nbsp;·&nbsp; Víťazstvo</p>
+    <div class="hero-actions">
+      <a href="#zapasy" class="btn-gold">Najbližší zápas</a>
+      <a href="#hráči" class="btn-outline">Náš tím</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-num" data-count="1983" data-raw>1983</div><div class="stat-lbl">Rok vzniku</div></div>
+  <div class="stat"><div class="stat-num" data-count="18">0</div><div class="stat-lbl">Hráči v tíme</div></div>
+  <div class="stat"><div class="stat-num" data-count="12">0</div><div class="stat-lbl">Výhier sezóna</div></div>
+  <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-lbl">Trofeje</div></div>
+</div>
+
+<!-- ZÁPASY & HRÁČI -->
+<section class="section two-col" id="zapasy">
+  <div class="reveal">
+    <div class="sec-label">Výsledky &amp; program</div>
+    <div class="sec-title">Zápasy</div>
+    <div class="matches">
+      <div class="match-card">
+        <div class="match-date">18. máj 2026</div>
+        <div class="match-teams">HK Košice — Tatran Prešov</div>
+        <div class="match-right"><span class="match-score">29:24</span><span class="badge badge-win">výhra</span></div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">11. máj 2026</div>
+        <div class="match-teams">Lučenec — HK Košice</div>
+        <div class="match-right"><span class="match-score">22:27</span><span class="badge badge-win">výhra</span></div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">4. máj 2026</div>
+        <div class="match-teams">HK Košice — SKP Bratislava</div>
+        <div class="match-right"><span class="match-score">21:23</span><span class="badge badge-loss">prehra</span></div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">28. apr 2026</div>
+        <div class="match-teams">Partizán BB — HK Košice</div>
+        <div class="match-right"><span class="match-score">19:25</span><span class="badge badge-win">výhra</span></div>
+      </div>
+      <div class="match-card next">
+        <div class="match-date">7. jún 2026</div>
+        <div class="match-teams"><strong>HK Košice — Hlohovec</strong></div>
+        <div class="match-right"><span class="match-score" style="font-size:14px;color:#9A9690;">18:00</span><span class="badge badge-next">domáci</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" id="hráči">
+    <div class="sec-label">Náš tím</div>
+    <div class="sec-title">Hráči</div>
+    <div class="players-grid">
+      <div class="player-card"><div class="player-num">1</div><div class="player-pos">Brankár</div><div class="player-name">Peter Kováč</div></div>
+      <div class="player-card"><div class="player-num">4</div><div class="player-pos">Obrana</div><div class="player-name">Michal Oravec</div></div>
+      <div class="player-card"><div class="player-num">7</div><div class="player-pos">Ľ. krídlo</div><div class="player-name">Marek Horváth</div></div>
+      <div class="player-card"><div class="player-num">9</div><div class="player-pos">P. krídlo</div><div class="player-name">Ján Baláž</div></div>
+      <div class="player-card"><div class="player-num">11</div><div class="player-pos">Stred. spojka</div><div class="player-name">Róbert Fekete</div></div>
+      <div class="player-card"><div class="player-num">13</div><div class="player-pos">Stred. spojka</div><div class="player-name">Jakub Novák</div></div>
+      <div class="player-card"><div class="player-num">17</div><div class="player-pos">Ľ. spojka</div><div class="player-name">Dávid Molnár</div></div>
+      <div class="player-card"><div class="player-num">21</div><div class="player-pos">Pivot</div><div class="player-name">Tomáš Lukáč</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TABUĽKA -->
+<section class="section bg-alt" id="tabuľka">
+  <div class="reveal">
+    <div class="sec-label">Slovenská extraliga</div>
+    <div class="sec-title">Tabuľka</div>
+    <div class="table-wrap">
+      <table class="standings">
+        <thead>
+          <tr>
+            <th>#</th><th>Tím</th><th>Z</th><th>V</th><th>R</th><th>P</th><th>Skóre</th><th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>SKP Bratislava</td><td>22</td><td>17</td><td>2</td><td>3</td><td>612:489</td><td>36</td></tr>
+          <tr class="highlight"><td>2</td><td><strong>HK Košice</strong></td><td>22</td><td>15</td><td>1</td><td>6</td><td>578:512</td><td>31</td></tr>
+          <tr><td>3</td><td>Tatran Prešov</td><td>22</td><td>14</td><td>0</td><td>8</td><td>562:531</td><td>28</td></tr>
+          <tr><td>4</td><td>Partizán BB</td><td>22</td><td>11</td><td>2</td><td>9</td><td>543:545</td><td>24</td></tr>
+          <tr><td>5</td><td>Lučenec</td><td>22</td><td>9</td><td>1</td><td>12</td><td>510:568</td><td>19</td></tr>
+          <tr><td>6</td><td>Hlohovec</td><td>22</td><td>4</td><td>0</td><td>18</td><td>468:626</td><td>8</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NOVINKY -->
+<section class="section" id="novinky">
+  <div class="reveal">
+    <div class="sec-label">Aktuality</div>
+    <div class="sec-title">Novinky z klubu</div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-img" style="background:#1a1500;color:#D4A017;">LETNÁ<br>PRÍPRAVA</div>
+        <div class="news-body">
+          <div class="news-tag">Tréning</div>
+          <div class="news-title">Letná príprava začína 2. júna na štadióne Lokomotív Košice</div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img" style="background:#0d1a10;color:#4ade80;">29:24<br>VÝHRA</div>
+        <div class="news-body">
+          <div class="news-tag">Výsledok</div>
+          <div class="news-title">Dominantné víťazstvo nad Tatran Prešov — tri dôležité body</div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img" style="background:#0d1325;color:#60a5fa;">U14<br>U16</div>
+        <div class="news-body">
+          <div class="news-tag">Akadémia</div>
+          <div class="news-title">Nábor do mládežníckych kategórií U14 a U16 je otvorený</div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img" style="background:#1a0d00;color:#fb923c;">NOVÝ<br>KOUČ</div>
+        <div class="news-body">
+          <div class="news-tag">Klub</div>
+          <div class="news-title">Klub potvrdil pokračovanie trénera Petra Szabóa na ďalšiu sezónu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KONTAKT -->
+<section class="section bg-alt" id="kontakt">
+  <div class="reveal contact-grid">
+    <div>
+      <div class="sec-label">Kde nás nájdete</div>
+      <div class="sec-title">Kontakt</div>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-label">Adresa</div><div class="contact-value">Štadión Lokomotív, Watsonova 10, 040 01 Košice</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Telefón</div><div class="contact-value">+421 55 123 4567</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-value">info@hkkosice.sk</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕐</div>
+          <div><div class="contact-label">Tréningy</div><div class="contact-value">Ut, Štv 18:00 — 20:00 &nbsp;|&nbsp; So 10:00 — 12:00</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map-placeholder">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 4C14.48 4 10 8.48 10 14C10 22 20 36 20 36C20 36 30 22 30 14C30 8.48 25.52 4 20 4ZM20 18C17.79 18 16 16.21 16 14C16 11.79 17.79 10 20 10C22.21 10 24 11.79 24 14C24 16.21 22.21 18 20 18Z" fill="#9A9690"/></svg>
+        <span>Lokomotív Košice — Watsonova 10</span>
+        <a href="https://maps.google.com/?q=Watsonova+10+Kosice" target="_blank" style="color:var(--gold);font-size:13px;margin-top:4px;">Otvoriť v Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">HK Košice</div>
+  <div class="footer-copy">© 2026 HK Košice. Všetky práva vyhradené.</div>
+  <div class="footer-links">
+    <a href="#">Stanovy klubu</a>
+    <a href="#">Ochrana súkromia</a>
+    <a href="#">Sponzori</a>
+  </div>
+  <div class="social-row">
+    <div class="soc" title="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+    </div>
+    <div class="soc" title="Instagram">
+      <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="var(--bg3)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--bg3)" stroke-width="2"/></svg>
+    </div>
+    <div class="soc" title="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--bg3)"/></svg>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav toggle
+function toggleNav(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Hero canvas — handball court lines
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resizeCanvas();
+window.addEventListener('resize',()=>{resizeCanvas();drawCourt();});
+
+function drawCourt(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const w=canvas.width, h=canvas.height;
+  ctx.strokeStyle='rgba(212,160,23,0.07)';
+  ctx.lineWidth=1;
+  // Center circle
+  ctx.beginPath();ctx.arc(w/2,h/2,Math.min(w,h)*0.35,0,Math.PI*2);ctx.stroke();
+  ctx.beginPath();ctx.arc(w/2,h/2,Math.min(w,h)*0.2,0,Math.PI*2);ctx.stroke();
+  // Center line
+  ctx.beginPath();ctx.moveTo(w/2,0);ctx.lineTo(w/2,h);ctx.stroke();
+  // Goals
+  const gw=80,gh=40;
+  ctx.beginPath();ctx.rect(0,h/2-gh/2,gw,gh);ctx.stroke();
+  ctx.beginPath();ctx.rect(w-gw,h/2-gh/2,gw,gh);ctx.stroke();
+  // Goal areas
+  ctx.beginPath();ctx.arc(0,h/2,h*0.45,-.6,.6);ctx.stroke();
+  ctx.beginPath();ctx.arc(w,h/2,h*0.45,Math.PI-.6,Math.PI+.6);ctx.stroke();
+  ctx.beginPath();ctx.arc(0,h/2,h*0.32,-.7,.7);ctx.stroke();
+  ctx.beginPath();ctx.arc(w,h/2,h*0.32,Math.PI-.7,Math.PI+.7);ctx.stroke();
+}
+drawCourt();
+
+// Count up animation
+function countUp(el, target){
+  if(el.dataset.raw) return;
+  let start=0, dur=1600, step=dur/target;
+  const timer=setInterval(()=>{
+    start+=Math.ceil(target/60);
+    if(start>=target){start=target;clearInterval(timer);}
+    el.textContent=start;
+  },step<16?16:step);
+}
+const statNums=document.querySelectorAll('.stat-num[data-count]');
+let counted=false;
+const statsObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting && !counted){
+    counted=true;
+    statNums.forEach(el=>countUp(el,+el.dataset.count));
+  }
+},{threshold:0.5});
+statsObs.observe(document.querySelector('.stats-strip'));
+
+// Scroll reveal
+const revealEls=document.querySelectorAll('.reveal');
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.15});
+revealEls.forEach(el=>revObs.observe(el));
+
+// Smooth nav active
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+</body>
+</html>
